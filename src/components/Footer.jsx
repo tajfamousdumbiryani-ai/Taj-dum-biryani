@@ -1,7 +1,10 @@
 import React from 'react';
 import { MapPin, Phone, Clock, MessageCircle, Utensils } from 'lucide-react';
 
+import { useCart } from "../context/CartContext";
+
 export default function Footer() {
+  const { totalItems } = useCart();
   return (
     <footer className="bg-gray-50 pt-12 pb-24 border-t border-gray-200">
       <div className="max-w-4xl mx-auto px-4">
@@ -27,9 +30,9 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-bold text-gray-900 mb-1">Find us in Gomti Nagar</h4>
-              <p className="text-gray-600 text-sm leading-relaxed">
+              <a href="https://maps.google.com/?q=Taj+Famous+Dum+Biryani+Gomti+Nagar+Lucknow" target="_blank" rel="noopener noreferrer" className="text-gray-600 text-sm leading-relaxed hover:text-brand-red transition-colors block">
                 LG-6, LDA Market, Vibhav Khand-4, Gomti Nagar, Near Mantri Awas, Food Safety Zone-17, Lucknow, Uttar Pradesh - 226010
-              </p>
+              </a>
             </div>
           </div>
 
@@ -41,9 +44,9 @@ export default function Footer() {
             </div>
             <div>
               <h4 className="font-bold text-gray-900 mb-1">Give us a call</h4>
-              <p className="text-gray-600 text-sm">
+              <a href="tel:+919984785099" className="text-gray-600 text-sm font-semibold hover:text-brand-red transition-colors block">
                 +91 99847 85099
-              </p>
+              </a>
             </div>
           </div>
 
@@ -75,7 +78,8 @@ export default function Footer() {
       </div>
 
       {/* Fixed Bottom Bar */}
-      <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
+      {totalItems === 0 && (
+        <div className="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 p-4 shadow-[0_-4px_10px_rgba(0,0,0,0.05)] z-50">
         <div className="max-w-4xl mx-auto flex items-center justify-between gap-4">
 
           {/* Logo & Title */}
@@ -106,6 +110,7 @@ export default function Footer() {
 
         </div>
       </div>
+      )}
     </footer>
   );
 }
