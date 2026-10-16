@@ -1,91 +1,91 @@
 import React from 'react';
-import { ChefHat, Flame, ArrowDown, MessageCircle } from 'lucide-react';
 
 export default function Hero() {
   const scrollToMenu = () => {
-    document.getElementById('menu-section')?.scrollIntoView({ behavior: 'smooth' });
+    document.getElementById('menu')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   return (
-    <section className="relative w-full overflow-hidden bg-zinc-900 h-[85vh] min-h-[500px]">
-      {/* Background Image & Overlay */}
-      <div className="absolute inset-0 z-0">
-        <img
-          src="https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?q=80&w=1200&auto=format&fit=crop"
-          alt="Overhead shot of Chicken Dum Biryani"
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/50 to-black/30"></div>
-      </div>
-
-      {/* Content Container */}
-      <div className="relative z-10 h-full max-w-4xl mx-auto px-4 flex flex-col justify-between pt-6 pb-8">
-
-        {/* Top Row: Tagline & Badge */}
-        <div className="flex justify-between items-start">
-          <div className="flex items-center gap-2 bg-black/40 backdrop-blur-sm px-3 py-1.5 rounded-full border border-white/10">
-            <div className="w-2 h-2 rounded-full bg-brand-red animate-pulse"></div>
-            <span className="text-white text-xs font-semibold tracking-wider uppercase">
-              From our dum to your doorstep
-            </span>
+    <>
+      <section className="hero">
+        <img className="hero-photo" src="/assets/IMG_20261009_200612-CNHVXjeS.png" alt="Chicken dum biryani with fragrant rice, chicken and raita" fetchpriority="high" width="768" height="768" />
+        <div className="hero-shade"></div>
+        <div className="hero-inner">
+          <div className="hero-eyebrow">
+            <span></span> FROM OUR DUM TO YOUR DOORSTEP
           </div>
-
-          <div className="flex flex-col items-center justify-center w-20 h-20 bg-white/10 backdrop-blur-md rounded-full border border-white/20 p-2 text-center transform rotate-12">
-            <ChefHat className="text-white w-6 h-6 mb-1" />
-            <span className="text-white text-[8px] font-bold leading-tight uppercase">
-              Good Things Take Dum
-            </span>
-          </div>
-        </div>
-
-        {/* Main Content */}
-        <div className="mb-4">
-          <h2 className="text-5xl md:text-6xl font-black text-white leading-[1.1] mb-4 tracking-tight">
-            Lucknow Ka Dum,<br />Har Bite Mein<span className="text-brand-red">.</span>
-          </h2>
-          <p className="text-gray-200 text-lg md:text-xl font-medium max-w-md mb-8 leading-relaxed">
-            Good Things Take Dum. Authentic slow-cooked flavours.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 mb-12">
+          <h1>Lucknow Ka Dum,<br className="mobile-break" />Har Bite Mein<span>.</span></h1>
+          <p>Good Things Take Dum.<br className="mobile-break" /> Authentic slow-cooked flavours.</p>
+          <div className="hero-actions">
             <button
               onClick={scrollToMenu}
-              className="bg-brand-red text-white font-bold text-lg px-8 py-4 rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2 shadow-lg shadow-brand-red/30"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 bg-primary text-primary-foreground shadow hover:bg-primary/90 h-9 px-4 py-2 order-button"
             >
-              Order Now <span className="text-xl leading-none">→</span>
+              Order Now
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right" aria-hidden="true">
+                <path d="M5 12h14"></path>
+                <path d="m12 5 7 7-7 7"></path>
+              </svg>
             </button>
             <a
               href="https://wa.me/919984785099"
               target="_blank"
-              rel="noopener noreferrer"
-              className="bg-white/10 backdrop-blur-sm border border-white/30 text-white font-bold text-lg px-8 py-4 rounded-xl active:scale-95 transition-transform flex items-center justify-center gap-2 hover:bg-white/20"
+              rel="noreferrer"
+              className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 hero-chat"
             >
-              <MessageCircle className="w-5 h-5 fill-current" />
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-message-circle" aria-hidden="true">
+                <path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"></path>
+              </svg>
               Chat on WhatsApp
             </a>
           </div>
-
-          {/* Bottom Row */}
-          <div className="flex items-end justify-between border-t border-white/20 pt-6 mt-auto">
-            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-sm">
-                <Flame className="text-brand-red w-5 h-5" />
-              </div>
-              <div className="flex flex-col">
-                <span className="text-white font-semibold">Slow-cooked.</span>
-                <span className="text-gray-300 text-sm">Full of flavour.</span>
-              </div>
-            </div>
-
-            <button
-              onClick={scrollToMenu}
-              className="w-12 h-12 rounded-full border border-white/30 flex items-center justify-center text-white active:bg-white/10 transition-colors animate-bounce"
-            >
-              <ArrowDown className="w-5 h-5" />
+          <div className="hero-bottom">
+            <span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-flame" aria-hidden="true">
+                <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path>
+              </svg>
+              Slow-cooked. Full of flavour.
+            </span>
+            <button onClick={scrollToMenu} aria-label="Explore menu" style={{background:'transparent', border:'none'}}>
+              <svg xmlns="http://www.w3.org/2000/svg" width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-down" aria-hidden="true">
+                <path d="M12 5v14"></path>
+                <path d="m19 12-7 7-7-7"></path>
+              </svg>
             </button>
           </div>
         </div>
-      </div>
-    </section>
+        <div className="hero-stamp">
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-chef-hat" aria-hidden="true">
+            <path d="M17 21a1 1 0 0 0 1-1v-5.35c0-.457.316-.844.727-1.041a4 4 0 0 0-2.134-7.589 5 5 0 0 0-9.186 0 4 4 0 0 0-2.134 7.588c.411.198.727.585.727 1.041V20a1 1 0 0 0 1 1Z"></path>
+            <path d="M6 17h12"></path>
+          </svg>
+          <span>GOOD THINGS<br /><strong>TAKE DUM.</strong></span>
+        </div>
+      </section>
+
+      <section className="promo-strip">
+        <div className="promo-inner">
+          <span className="promo-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="29" height="29" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-badge-percent" aria-hidden="true">
+              <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path>
+              <path d="m15 9-6 6"></path>
+              <path d="M9 9h.01"></path>
+              <path d="M15 15h.01"></path>
+            </svg>
+          </span>
+          <div>
+            <strong>FLAT 10% OFF <span>ON ALL WEBSITE ORDERS</span></strong>
+            <p>A little treat, on us. Auto-applied at checkout.</p>
+          </div>
+          <span className="promo-no-code">
+            No code needed
+            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right" aria-hidden="true">
+              <path d="M5 12h14"></path>
+              <path d="m12 5 7 7-7 7"></path>
+            </svg>
+          </span>
+        </div>
+      </section>
+    </>
   );
 }
