@@ -81,7 +81,7 @@ export const menuItems = [
     description: "A juicy chicken drumstick, marinated with warming spices.",
     isSignature: false,
     customisable: false,
-    image: "/assets/IMG_20261009_200708-BUiDB2On.png"
+    image: "/assets/IMG_20261009_200708.png"
   },
   {
     id: 7,
@@ -93,7 +93,7 @@ export const menuItems = [
     description: "A generously sized, spice-marinated chicken thigh and leg.",
     isSignature: false,
     customisable: false,
-    image: "/assets/IMG_20261009_200813-CoAHEnOj.png"
+    image: "/assets/IMG_20261009_200813.png"
   },
   {
     id: 8,
@@ -105,7 +105,7 @@ export const menuItems = [
     description: "Golden and crisp outside, deliciously tender on the inside.",
     isSignature: false,
     customisable: false,
-    image: "/assets/IMG_20261009_200338-CD1S4ZXQ.webp"
+    image: "/assets/IMG_20261009_201054.jpg"
   },
   {
     id: 9,

@@ -8,7 +8,7 @@ export default function Hero() {
   return (
     <>
       <section className="hero">
-        <img className="hero-photo" src="/assets/IMG_20261009_200612-CNHVXjeS.png" alt="Chicken dum biryani with fragrant rice, chicken and raita" fetchpriority="high" width="768" height="768" />
+        <img className="hero-photo" src="/assets/IMG_20261009_200612.png" alt="Chicken dum biryani with fragrant rice, chicken and raita" fetchpriority="high" width="768" height="768" />
         <div className="hero-shade"></div>
         <div className="hero-inner">
           <div className="hero-eyebrow">
