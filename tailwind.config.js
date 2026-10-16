@@ -31,9 +31,7 @@ export default {
           darkred: '#DC2626'
         }
       },
-      fontFamily: {
-        sans: ['Inter', 'sans-serif'],
-      }
+      fontFamily: { sans: ['Manrope', 'sans-serif'], heading: ['DM Sans', 'sans-serif'] }
     },
   },
   plugins: [],

@@ -1,17 +1,12 @@
 import React, { useState } from 'react';
 import { useCart } from '../context/CartContext';
 import VariantModal from './VariantModal';
-import { Minus, Plus } from 'lucide-react';
 
 export default function MenuItem({ item }) {
-  const scrollPosition = React.useRef(0);
-
   const { addToCart, updateQuantity, getItemTotalQuantity, cartItems } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const totalQuantityInCart = getItemTotalQuantity(item.id);
-
-  // For non-customisable items, we can find the exact cart item to handle +/- directly
   const cartItem = !item.customisable ? cartItems.find(i => i.id === item.id) : null;
 
   const handleAddClick = () => {
@@ -28,91 +23,79 @@ export default function MenuItem({ item }) {
 
   return (
     <>
-      <div className="flex justify-between gap-4 py-6 border-b border-gray-200 last:border-0">
-        {/* Left Content */}
-        <div className="flex-1">
-          <div className="flex items-center gap-2 mb-1">
-            <div className={`w-4 h-4 border flex items-center justify-center rounded-sm ${item.isVeg ? 'border-green-600' : 'border-red-600'}`}>
-              <div className={`w-2 h-2 rounded-full ${item.isVeg ? 'bg-green-600' : 'bg-red-600'}`}></div>
-            </div>
+      <article className="menu-item">
+        <div className="dish-copy">
+          <div className="dish-topline">
+            <span className={`food-badge ${item.isVeg ? 'veg' : ''}`} role="img" aria-label={item.isVeg ? "Vegetarian" : "Non-vegetarian"}>
+              <span></span>
+            </span>
             {item.isSignature && (
-              <span className="text-brand-red text-xs font-bold bg-brand-red/10 px-2 py-0.5 rounded-sm flex items-center gap-1">
-                🔥 Signature
+              <span className="dish-tag">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-flame" aria-hidden="true">
+                  <path d="M12 3q1 4 4 6.5t3 5.5a1 1 0 0 1-14 0 5 5 0 0 1 1-3 1 1 0 0 0 5 0c0-2-1.5-3-1.5-5q0-2 2.5-4"></path>
+                </svg>
+                Signature
               </span>
             )}
           </div>
-
-          <h3 className="text-lg font-bold text-gray-900 mb-1 leading-tight">
-            {item.name}
+          <h3>
+            <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 dish-name-button" aria-label={`View ${item.name}`}>
+              {item.name}
+            </button>
           </h3>
-
-          <div className="text-[13px] font-medium text-gray-800 mb-1.5">
-            {item.priceText}
+          <div className="dish-price">
+            ₹{item.basePrice}
+            <span> {item.customisable ? 'onwards' : `· ${item.priceText.split('· ')[1]}`}</span>
           </div>
-
-          <p className="text-gray-500 text-sm leading-snug line-clamp-2">
-            {item.description}
-          </p>
+          <p>{item.description}</p>
         </div>
 
-        {/* Right Image & Button */}
-        <div className="relative w-32 h-32 shrink-0">
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-full h-full object-cover rounded-2xl shadow-sm"
-          />
+        <div className="dish-visual">
+          <button className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 dish-photo-button" aria-label={`View photo of ${item.name}`}>
+            <img src={item.image} alt={item.name} width="180" height="180" loading="lazy" />
+          </button>
 
-          <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 w-28">
+          <div className="dish-add">
             {totalQuantityInCart === 0 ? (
-              <button
-                onClick={handleAddClick}
-                className="w-full bg-white text-brand-red font-bold py-1.5 px-4 rounded-lg shadow-sm border border-gray-200 uppercase text-sm hover:bg-gray-50 active:scale-95 transition-all flex items-center justify-center gap-1"
-              >
-                ADD <span className="text-lg leading-none">+</span>
+              <button onClick={handleAddClick} className={`inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 disabled:cursor-not-allowed [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 border border-input bg-background shadow-sm hover:bg-accent hover:text-accent-foreground h-9 px-4 py-2 add-button ${item.isVeg ? 'veg-add' : ''}`} aria-label={`Add ${item.name}`}>
+                ADD
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus" aria-hidden="true">
+                  <path d="M5 12h14"></path>
+                  <path d="M12 5v14"></path>
+                </svg>
               </button>
             ) : (
-              <div className="w-full bg-white border border-brand-red rounded-lg shadow-md flex items-center justify-between h-[38px] overflow-hidden">
+              <div style={{display:'flex', alignItems:'center', background:'white', border:'1px solid var(--brand-red, #E23744)', borderRadius:'8px', overflow:'hidden', height:'36px', width:'100%'}}>
                 {item.customisable ? (
-                   // If customisable, clicking +/- should probably open modal or redirect to cart.
-                   // Zomato usually opens modal for customisable again, or shows a simplified view.
-                   // We'll open the modal for simplicity so they can add another variant.
                    <button
                      onClick={handleAddClick}
-                     className="w-full h-full text-brand-red font-bold text-sm bg-brand-red/5 flex items-center justify-center gap-2"
+                     style={{width:'100%', height:'100%', background:'rgba(226,55,68,0.05)', color:'var(--brand-red, #E23744)', fontWeight:'bold', fontSize:'12px', border:'none', cursor:'pointer'}}
                    >
-                     <span>{totalQuantityInCart} Added</span>
-                     <Plus className="w-4 h-4" />
+                     {totalQuantityInCart} Added +
                    </button>
                 ) : (
-                  // Non customisable counter
                   <>
                     <button
                       onClick={() => updateQuantity(item.id, null, -1)}
-                      className="w-8 h-full flex items-center justify-center text-brand-red hover:bg-brand-red/10 active:bg-brand-red/20 transition-colors"
+                      style={{flex:1, height:'100%', background:'transparent', border:'none', color:'var(--brand-red, #E23744)', cursor:'pointer', display:'flex', alignItems:'center', justifyItems:'center', justifyContent:'center'}}
                     >
-                      <Minus className="w-4 h-4" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-minus" aria-hidden="true"><path d="M5 12h14"></path></svg>
                     </button>
-                    <span className="font-bold text-brand-red text-sm">{cartItem?.quantity || totalQuantityInCart}</span>
+                    <span style={{fontWeight:'bold', color:'var(--brand-red, #E23744)', fontSize:'14px'}}>{cartItem?.quantity || totalQuantityInCart}</span>
                     <button
                       onClick={() => updateQuantity(item.id, null, 1)}
-                      className="w-8 h-full flex items-center justify-center text-brand-red hover:bg-brand-red/10 active:bg-brand-red/20 transition-colors"
+                      style={{flex:1, height:'100%', background:'transparent', border:'none', color:'var(--brand-red, #E23744)', cursor:'pointer', display:'flex', alignItems:'center', justifyItems:'center', justifyContent:'center'}}
                     >
-                      <Plus className="w-4 h-4" />
+                      <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-plus" aria-hidden="true"><path d="M5 12h14"></path><path d="M12 5v14"></path></svg>
                     </button>
                   </>
                 )}
               </div>
             )}
-
-            {item.customisable && (
-              <div className="text-[10px] text-gray-400 text-center mt-0.5 font-medium">
-                customisable
-              </div>
-            )}
           </div>
+          {item.customisable && <small>customisable</small>}
         </div>
-      </div>
+      </article>
 
       <VariantModal
         item={item}

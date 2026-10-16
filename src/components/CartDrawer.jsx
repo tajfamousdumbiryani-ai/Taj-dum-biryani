@@ -26,7 +26,7 @@ export default function CartDrawer() {
   const handlePlaceOrder = () => {
     if (!validateForm()) return;
 
-    let itemsListText = cartItems.map((item, index) => {
+    let itemsListText = cartItems.map((item) => {
       const variantText = item.variant ? `(${item.variant.name})` : '';
       const price = item.variant ? item.variant.price : item.basePrice;
       const subtotal = price * item.quantity;
