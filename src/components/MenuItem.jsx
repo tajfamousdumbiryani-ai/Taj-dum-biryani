@@ -4,6 +4,8 @@ import VariantModal from './VariantModal';
 import { Minus, Plus } from 'lucide-react';
 
 export default function MenuItem({ item }) {
+  const scrollPosition = React.useRef(0);
+
   const { addToCart, updateQuantity, getItemTotalQuantity, cartItems } = useCart();
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -26,7 +28,7 @@ export default function MenuItem({ item }) {
 
   return (
     <>
-      <div className="flex justify-between gap-4 py-6 border-b border-gray-100 last:border-0">
+      <div className="flex justify-between gap-4 py-6 border-b border-gray-200 last:border-0">
         {/* Left Content */}
         <div className="flex-1">
           <div className="flex items-center gap-2 mb-1">
@@ -44,7 +46,7 @@ export default function MenuItem({ item }) {
             {item.name}
           </h3>
 
-          <div className="text-sm font-semibold text-gray-800 mb-2">
+          <div className="text-[13px] font-medium text-gray-800 mb-1.5">
             {item.priceText}
           </div>
 
@@ -65,7 +67,7 @@ export default function MenuItem({ item }) {
             {totalQuantityInCart === 0 ? (
               <button
                 onClick={handleAddClick}
-                className="w-full bg-white text-brand-red font-bold py-2 px-4 rounded-lg shadow-md border border-gray-100 uppercase text-sm hover:bg-gray-50 active:scale-95 transition-all flex items-center justify-center gap-1"
+                className="w-full bg-white text-brand-red font-bold py-1.5 px-4 rounded-lg shadow-sm border border-gray-200 uppercase text-sm hover:bg-gray-50 active:scale-95 transition-all flex items-center justify-center gap-1"
               >
                 ADD <span className="text-lg leading-none">+</span>
               </button>
@@ -104,7 +106,7 @@ export default function MenuItem({ item }) {
             )}
 
             {item.customisable && (
-              <div className="text-[10px] text-gray-500 text-center mt-1 font-medium bg-white/90 rounded px-1">
+              <div className="text-[10px] text-gray-400 text-center mt-0.5 font-medium">
                 customisable
               </div>
             )}

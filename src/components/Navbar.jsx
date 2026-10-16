@@ -6,7 +6,7 @@ export default function Navbar() {
   const { totalItems, openCart } = useCart();
 
   return (
-    <header className="sticky top-0 z-50 bg-white shadow-sm">
+    <header className="sticky top-0 z-50 bg-white shadow-sm border-b border-gray-100">
       <div className="max-w-4xl mx-auto px-4 h-16 flex items-center justify-between">
         {/* Left Side: Logo & Title */}
         <div className="flex items-center gap-3">
