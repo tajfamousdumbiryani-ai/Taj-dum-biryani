@@ -46,7 +46,7 @@ export default function MenuItem({ item }) {
             {item.name}
           </h3>
 
-          <div className="text-sm font-medium text-gray-800 mb-1">
+          <div className="text-[13px] font-medium text-gray-800 mb-1.5">
             {item.priceText}
           </div>
 
@@ -106,7 +106,7 @@ export default function MenuItem({ item }) {
             )}
 
             {item.customisable && (
-              <div className="text-[10px] text-gray-500 text-center mt-1 font-medium bg-white/90 rounded px-1">
+              <div className="text-[10px] text-gray-400 text-center mt-0.5 font-medium">
                 customisable
               </div>
             )}
